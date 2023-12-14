@@ -8,7 +8,7 @@ sdk: org.gnome.Sdk
 # runtime-version: "23.08"
 # sdk: org.freedesktop.Sdk
 
-command: tauri-flatpak  # TODO
+command: tauri-app  # TODO
 finish-args:
   # Show windows
   - --socket=wayland
@@ -20,9 +20,9 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        path: ./deb-unpacked/usr/bin/tauri-flatpak  # TODO
+        path: ./deb-unpacked/usr/bin/tauri-app  # TODO
     build-commands:
-      - "install -Dm755 finanzbuch /app/bin/tauri-flatpak" # TODO
+      - "install -Dm755 finanzbuch /app/bin/tauri-app" # TODO
       # - "ldd /app/bin/finanzbuch | grep \"not found\"" # to see missing deps while building
 
   # dependencies of binary
