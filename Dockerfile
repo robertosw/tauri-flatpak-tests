@@ -14,7 +14,8 @@ RUN apt install -y \
     libgtk-3-dev \
     libayatana-appindicator3-dev \
     librsvg2-dev \ 
-    && cargo install tauri-cli
+    && cargo install tauri-cli \
+    && cargo install create-tauri-app --locked
 
 # Flatpak
 RUN apt install -y \
