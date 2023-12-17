@@ -1,8 +1,0 @@
-[Desktop Entry]
-Categories=
-Comment=A Tauri App
-Exec=tauri-app
-Icon=tauri-app
-Name=tauri-app
-Terminal=false
-Type=Application

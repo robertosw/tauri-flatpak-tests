@@ -11,17 +11,10 @@
     "version": "0.1.0"
   },
   "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      }
-    },
     "bundle": {
       "active": true,
+      "targets": "deb",
       "identifier": "org.tauri.flatpak",
-      "targets": ["deb"],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -42,5 +35,10 @@
         "height": 600
       }
     ]
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
   }
 }
