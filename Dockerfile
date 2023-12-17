@@ -20,6 +20,7 @@ RUN cargo install create-tauri-app --locked
 # RUN cargo install tauri-cli
 
 # Tauri v2
+# Building this container the first time takes ~15min (with ~7MB/s download)
 RUN apt install -y \
     libwebkit2gtk-4.1-dev \
     build-essential \
