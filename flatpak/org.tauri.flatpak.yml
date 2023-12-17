@@ -1,14 +1,14 @@
 id: org.tauri.flatpak
 
 runtime: org.gnome.Platform
-runtime-version: "44"
+runtime-version: "42"
 sdk: org.gnome.Sdk
 
 # runtime: org.freedesktop.Platform
 # runtime-version: "23.08"
 # sdk: org.freedesktop.Sdk
 
-command: tauri-app  # TODO
+command: tauri-app
 finish-args:
   # Show windows
   - --socket=wayland
@@ -20,10 +20,10 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        path: ./deb-unpacked/usr/bin/tauri-app  # TODO
+        path: ../tauri-app/src-tauri/target/release/bundle/deb/tauri-app_0.1.0_amd64/data/usr/bin/tauri-app
     build-commands:
-      - "install -Dm755 finanzbuch /app/bin/tauri-app" # TODO
-      # - "ldd /app/bin/finanzbuch | grep \"not found\"" # to see missing deps while building
+      - "install -Dm755 tauri-app /app/bin/tauri-app"
+      
 
   # dependencies of binary
   - name: libwebkit
@@ -35,7 +35,7 @@ modules:
       #   path: /usr/lib/x86_64-linux-gnu/
     build-commands:
       - "install -Dm644 libwebkit2gtk-4.0.so.37 /app/lib/libwebkit2gtk-4.0.so.37"
-      # - "ldd /app/lib/libwebkit2gtk-4.0.so.37 | grep \"not found\"" # to see missing deps while building
+      
 
   - name: libjavascriptcoregtk-4
     buildsystem: simple
@@ -44,7 +44,7 @@ modules:
         path: /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.0.so.18
     build-commands:
       - "install -Dm644 libjavascriptcoregtk-4.0.so.18 /app/lib/libjavascriptcoregtk-4.0.so.18"
-      # - "ldd /app/lib/libjavascriptcoregtk-4.0.so.18 | grep \"not found\"" # to see missing deps while building
+      
 
   - name: libsoup-2
     buildsystem: simple
@@ -53,7 +53,7 @@ modules:
         path: /usr/lib/x86_64-linux-gnu/libsoup-2.4.so.1
     build-commands:
       - "install -Dm644 libsoup-2.4.so.1 /app/lib/libsoup-2.4.so.1"
-      # - "ldd /app/lib/libsoup-2.4.so.1 | grep \"not found\"" # to see missing deps while building
+      
 
   # dependencies of dependencies
   - name: libicui18n
@@ -63,7 +63,7 @@ modules:
         path: /usr/lib/x86_64-linux-gnu/libicui18n.so.72
     build-commands:
       - "install -Dm644 libicui18n.so.72 /app/lib/libicui18n.so.72"
-      # - "ldd /app/lib/libicui18n.so.72 | grep \"not found\"" # to see missing deps while building
+      
 
   - name: libicuuc
     buildsystem: simple
@@ -72,7 +72,7 @@ modules:
         path: /usr/lib/x86_64-linux-gnu/libicuuc.so.72
     build-commands:
       - "install -Dm644 libicuuc.so.72 /app/lib/libicuuc.so.72"
-      # - "ldd /app/lib/libicuuc.so.72 | grep \"not found\"" # to see missing deps while building
+      
 
   - name: libicudata
     buildsystem: simple
@@ -81,4 +81,23 @@ modules:
         path: /usr/lib/x86_64-linux-gnu/libicudata.so.72
     build-commands:
       - "install -Dm644 libicudata.so.72 /app/lib/libicudata.so.72"
-      # - "ldd /app/lib/libicudata.so.72 | grep \"not found\"" # to see missing deps while building
+      
+
+  - name: ldd-check
+    buildsystem: simple
+    build-commands:
+      # to see missing deps while building
+      # || true because grep returns 1 if no line matched and this script stops if anything returns != 0
+
+      - "ldd /app/bin/tauri-app | grep \"not found\" || true"
+      - "ldd /app/lib/libwebkit2gtk-4.0.so.37 | grep \"not found\" || true"
+      - "ldd /app/lib/libjavascriptcoregtk-4.0.so.18 | grep \"not found\" || true"
+      - "ldd /app/lib/libsoup-2.4.so.1 | grep \"not found\" || true"
+      - "ldd /app/lib/libicui18n.so.72 | grep \"not found\" || true"
+      - "ldd /app/lib/libicuuc.so.72 | grep \"not found\" || true"
+      - "ldd /app/lib/libicudata.so.72 | grep \"not found\" || true"
+      - "ldd /app/lib/x86_64-linux-gnu/webkit2gtk-4.0/MiniBrowser | grep \"not found\" || true"
+      - "ldd /app/lib/x86_64-linux-gnu/webkit2gtk-4.0/WebKitWebProcess | grep \"not found\" || true"
+      - "ldd /app/lib/x86_64-linux-gnu/webkit2gtk-4.0/WebKitNetworkProcess | grep \"not found\" || true"
+      - "ldd /app/lib/x86_64-linux-gnu/webkit2gtk-4.0/injected-bundle/libwebkit2gtkinjectedbundle.so | grep \"not found\" || true"
+      - "echo"
