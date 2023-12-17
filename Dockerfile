@@ -4,18 +4,32 @@ FROM rust:1.74.0
 RUN apt update && apt upgrade -y
 
 # Tauri
+RUN cargo install tauri-cli \
+    && cargo install create-tauri-app --locked
+
+# Tauri v1
+# RUN apt install -y \
+#     libwebkit2gtk-4.0-dev \
+#     build-essential \
+#     curl \
+#     wget \
+#     file \
+#     libssl-dev \
+#     libgtk-3-dev \
+#     libayatana-appindicator3-dev \
+#     librsvg2-dev
+
+# Tauri v2
 RUN apt install -y \
-    libwebkit2gtk-4.0-dev \
+    ibwebkit2gtk-4.1-dev \
     build-essential \
     curl \
     wget \
-    file \
     libssl-dev \
     libgtk-3-dev \
     libayatana-appindicator3-dev \
-    librsvg2-dev \ 
-    && cargo install tauri-cli \
-    && cargo install create-tauri-app --locked
+    librsvg2-dev \
+    cargo install tauri-cli --version '^2.0.0-alpha'
 
 # Flatpak
 RUN apt install -y \

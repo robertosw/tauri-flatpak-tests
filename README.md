@@ -1,6 +1,6 @@
 # tauri-flatpak-tests
 
-- cargo project init to use only rust and js: `cargo create-tauri-app -t vanilla -m cargo -y`
+- cargo project init to use only rust and js: `cargo create-tauri-app -t vanilla -m cargo -y --alpha`
 - This assumes that the tauri app is built into a .deb file
 - The main problem is matching the build environment to the environment of org.gnome.Platform//45
   - maybe nix can help with that to install one specific version of a library
