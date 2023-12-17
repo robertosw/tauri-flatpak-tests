@@ -1,5 +1,18 @@
 # tauri-flatpak-tests
 
+# How to run this
+## In Container
+- `cargo tauri build`
+- in `flatpak` directory: `flatpak-builder --repo=repo --force-clean build-dir org.tauri.flatpak.yml`
+
+## On host
+- in `flatpak` directory: `flatpak --user remote-add --no-gpg-verify repo-tauri repo`
+- in `flatpak` directory: `flatpak -y --user install repo-tauri org.tauri.flatpak`
+- `flatpak run org.tauri.flatpak`
+- Updates: `flatpak -y --user update org.tauri.flatpak`
+
+# Other notes
+
 - cargo project init to use only rust and js: `cargo create-tauri-app -t vanilla -m cargo -y --alpha`
 - This assumes that the tauri app is built into a .deb file
 - The main problem is matching the build environment to the environment of org.gnome.Platform//45
