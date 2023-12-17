@@ -22,3 +22,5 @@ anhand `tauri-app-ldd.txt` und `gnome42-libs.txt` die Versions Differenzen herau
 - Ideal wäre auch noch die Versions unterschiede zu sortieren. Also nach unterschieden in major.minor.patch sortieren (alle mit major unterschied zsm, alle mit minor unterschied zsm, etc)
 
 `flatpak run --command=bash org.gnome.Platform//42`
+
+- Building webkit from source?
