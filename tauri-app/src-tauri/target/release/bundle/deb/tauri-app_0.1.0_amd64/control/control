@@ -1,0 +1,9 @@
+Package: tauri-app
+Version: 0.1.0
+Architecture: amd64
+Installed-Size: 17490
+Maintainer: you
+Depends: libwebkit2gtk-4.1-0, libgtk-3-0
+Description: A Tauri App
+ (none)
+Priority: optional
