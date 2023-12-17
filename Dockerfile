@@ -37,5 +37,6 @@ RUN apt install -y \
     flatpak-builder && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo  && \
     flatpak install -y flathub org.freedesktop.Platform//23.08 org.freedesktop.Sdk//23.08 && \
-    flatpak install -y flathub org.gnome.Platform//44 org.gnome.Sdk//44 && \
     flatpak install -y flathub org.gnome.Platform//45 org.gnome.Sdk//45
+
+    # flatpak install -y flathub org.gnome.Platform//44 org.gnome.Sdk//44 && \
